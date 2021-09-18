@@ -9,43 +9,61 @@
                 </div>
                 <hr>
                 <p class="text-justify">
-                <table class="tabela_produtos">
-                    <thead>
-                        <%if (produtos_achados=='' ){ %>
+                <div class="table-responsive">
+                    <table class="tabela_produtos">
+                        <thead>
+                            <%if (produtos_achados=='' ){ %>
+                                <tr>
+                                    <td colspan="7" class="alert-warning text-center">
+                                        Não há nenhuma informação a ser exibida! <br>
+                                        <a href="/cadastrarprodutos" class="botao_cadastro">Cadastre um novo produto</a>
+                                    </td>
+                                </tr>
+                                <%} else { produtos_achados.forEach(function(produto){ %>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Quantidade</th>
+                                    <th>Seção</th>
+                                    <th>Preço</th>
+                                    <th>Data da Inserção</th>
+                                    <th>ID Funcionário</th>
+                                    <th>ID Fornecedor</th>
+                                    <th>Ações</th>
+                        </thead>
+                        <tbody>
                             <tr>
-                                <td colspan="7" class="alert-warning text-center">
-                                    Não há nenhuma informação a ser exibida! <br>
-                                    <a href="/cadastrarprodutos" class="botao_cadastro">Cadastre um novo produto</a>
+                                <td>
+                                    <%= produto.id_produto %>
+                                </td>
+                                <td>
+                                    <%= produto.nome_produto %>
+                                </td>
+                                <td>
+                                    <%= produto.quantidade_produto %>
+                                </td>
+                                <td>
+                                    <%= produto.secao %>
+                                </td>
+                                <td>
+                                    <%= produto.preco %>
+                                </td>
+                                <td>
+                                    <%= new Date(produto.data_insercao).toLocaleDateString() %>
+                                </td>
+                                <td>
+                                    <%= produto.funcionario_produtos %>
+                                </td>
+                                <td>
+                                    <%= produto.fornecedor_produtos %>
+                                </td>
+                                <td>
+                                    <a href="/deletarproduto/<%=produto.id_produto%>" class="btn btn-danger">Deletar</a>
                                 </td>
                             </tr>
-                            <%} else { produtos_achados.forEach(function(produto){ %>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Quantidade</th>
-                                <th>Seção</th>
-                                <th>Preço</th>
-                                <th>Data da Inserção</th>
-                                <th>ID Funcionário</th>
-                                <th>ID Fornecedor</th>
-                                <th>Ações</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><%= produto.id_produto %></td>
-                            <td><%= produto.nome_produto %></td>
-                            <td><%= produto.quantidade_produto %></td>
-                            <td><%= produto.secao %></td>
-                            <td><%= produto.preco %></td>
-                            <td><%= produto.data_insercao %></td>
-                            <td><%= produto.funcionario_produtos %></td>
-                            <td><%= produto.fornecedor_produtos %></td>
-                            <td>
-                                <a href="/deletarproduto/<%=produto.id_produto%>" class="btn btn-danger">Deletar</a>
-                            </td>
-                        </tr>
-                        <% })} %>
-                    </tbody>
-                </table>
+                            <% })} %>
+                        </tbody>
+                    </table>
+                </div>
                 </p>
             </div>
             <div class="col-md-4 d-flex flex-column align-items-center">
