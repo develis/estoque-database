@@ -32,10 +32,6 @@ app.get('/', (req, res) => {
 
 // CRUD PRODUTOS
 
-app.get('/cadastrarprodutos', (req, res) => {
-    res.render('views/pages/cadastrarProdutos')
-})
-
 // READ
 app.get('/produtos', function (req, res) {
     db.query('SELECT * FROM produtos', (err, achado) => {
@@ -45,6 +41,10 @@ app.get('/produtos', function (req, res) {
 });
 
 // CREATE
+app.get('/cadastrarprodutos', (req, res) => {
+    res.render('views/pages/cadastrarProdutos')
+})
+
 app.post('/cadastrarprodutos', (req, res) => {
     var nome_produto = req.body.nome_produto
     var quantidade_produto = req.body.quantidade_produto
@@ -91,7 +91,6 @@ app.get('/editarproduto/(:id)', function (req, res) {
     })
 })
 
-// UPDATE
 app.post('/editarproduto/:id', function (req, res) {
     let id = req.params.id;
     var nome_produto = req.body.nome_produto
@@ -114,6 +113,77 @@ app.post('/editarproduto/:id', function (req, res) {
             throw err;
         } else {
             res.redirect('/produtos');
+        }
+    })
+})
+
+// CRUD FUNCIONARIOS
+
+// READ
+app.get('/funcionarios', function (req, res) {
+    db.query('SELECT * FROM funcionarios', (err, achado) => {
+        if (err) throw err
+        else res.render('views/pages/funcionarios', { funcionarios_achados: achado });
+    });
+});
+
+// CREATE
+app.get('/cadastrarfuncionarios', (req, res) => {
+    res.render('views/pages/cadastrarFuncionarios')
+})
+
+app.post('/cadastrarfuncionarios', (req, res) => {
+    var nome_funcionario = req.body.nome_funcionario
+    var cargo_funcionario = req.body.cargo_funcionario
+    var cpf_funcionario = req.body.cpf_funcionario
+    var inserir_funcionario = `INSERT INTO funcionarios (nome_funcionario, cargo_funcionario, cpf_funcionario) VALUES('${nome_funcionario}', '${cargo_funcionario}','${cpf_funcionario}');`;
+    db.query(inserir_funcionario, (err, result) => {
+        if (err) throw err
+        return res.redirect('/funcionarios')
+    })
+});
+
+// DELETE
+app.get("/deletarfuncionario/(:id)", (req, res) => {
+    var id = req.params.id
+    db.query('DELETE FROM funcionarios WHERE id_funcionario = ' + id, (err, result) => {
+        if (err) throw err;
+        else res.redirect('/funcionarios')
+    })
+});
+
+// UPDATE
+app.get('/editarfuncionario/(:id)', function (req, res) {
+    let id = req.params.id;
+    db.query('SELECT * FROM funcionarios WHERE id_funcionario = ' + id, function (err, achado, fields) {
+        if (err) throw err
+        else {
+            res.render('views/pages/editarFuncionario', {
+                title: 'Editar Funcionário',
+                id_funcionario: achado[0].id_funcionario,
+                nome_funcionario: achado[0].nome_funcionario,
+                cargo_funcionario: achado[0].cargo_funcionario,
+                cpf_funcionario: achado[0].cpf_funcionario,
+            })
+        }
+    })
+})
+
+app.post('/editarfuncionario/:id', function (req, res) {
+    let id = req.params.id;
+    var nome_funcionario = req.body.nome_funcionario
+    var cargo_funcionario = req.body.cargo_funcionario
+    var cpf_funcionario = req.body.cpf_funcionario
+    var form_data = {
+        nome_funcionario: nome_funcionario,
+        cargo_funcionario: cargo_funcionario,
+        cpf_funcionario: cpf_funcionario,
+    }
+    db.query('UPDATE funcionarios SET ? WHERE id_funcionario = ' + id, form_data, function (err, result) {
+        if (err) {
+            throw err;
+        } else {
+            res.redirect('/funcionarios');
         }
     })
 })

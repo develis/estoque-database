@@ -1,0 +1,32 @@
+<%- include('../partials/header'); %>
+
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="text-center">Cadastrar Funcionário</h1>
+                <hr>
+                <p class="text-justify">
+                <form action="/cadastrarfuncionarios" method="POST" class="form_cadastro">
+                    <input type="text" placeholder="Nome do Funcionário" name="nome_funcionario" id="nome_funcionario"
+                        class="input_form">
+                    <input type="text" placeholder="Cargo do Funcionário" name="cargo_funcionario"
+                        id="cargo_funcionario" class="input_form">
+                    <input type="text" placeholder="CPF do Funcionário" name="cpf_funcionario" id="cpf_funcionario"
+                        class="input_form">
+                    <button type="submit" class="botao_form">Cadastrar</button>
+                </form>
+                </p>
+            </div>
+            <div class="col-md-4 d-flex flex-column align-items-center">
+                <h1>Menu</h1>
+                <a name="" id="" class="botao_menu" href="/" role="button">Inicio</a>
+                <a name="" id="" class="botao_menu" href="#" role="button">Estoque Completo</a>
+                <a name="" id="" class="botao_menu" href="#" role="button">Estoque Simplificado</a>
+                <a name="" id="" class="botao_menu" href="/produtos" role="button">Produtos</a>
+                <a name="" id="" class="botao_menu" href="#" role="button">Funcionarios</a>
+                <a name="" id="" class="botao_menu" href="#" role="button">Fornecedores</a>
+            </div>
+        </div>
+    </main>
+
+    <%- include('../partials/footer'); %>
