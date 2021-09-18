@@ -187,3 +187,70 @@ app.post('/editarfuncionario/:id', function (req, res) {
         }
     })
 })
+
+// CRUD FORNECEDORES
+
+// READ
+app.get('/fornecedores', function (req, res) {
+    db.query('SELECT * FROM fornecedores', (err, achado) => {
+        if (err) throw err
+        else res.render('views/pages/fornecedores', { fornecedores_achados: achado });
+    });
+});
+
+// CREATE
+app.get('/cadastrarfornecedores', (req, res) => {
+    res.render('views/pages/cadastrarFornecedores')
+})
+
+app.post('/cadastrarfornecedores', (req, res) => {
+    var nome_fornecedor = req.body.nome_fornecedor
+    var cnpj_fornecedor = req.body.cnpj_fornecedor
+    var inserir_fornecedor = `INSERT INTO fornecedores (nome_fornecedor, cnpj_fornecedor) VALUES('${nome_fornecedor}', '${cnpj_fornecedor}');`;
+    db.query(inserir_fornecedor, (err, result) => {
+        if (err) throw err
+        return res.redirect('/fornecedores')
+    })
+});
+
+// DELETE
+app.get("/deletarfornecedor/(:id)", (req, res) => {
+    var id = req.params.id
+    db.query('DELETE FROM fornecedores WHERE id_fornecedor = ' + id, (err, result) => {
+        if (err) throw err;
+        else res.redirect('/fornecedores')
+    })
+});
+
+// UPDATE
+app.get('/editarfornecedor/(:id)', function (req, res) {
+    let id = req.params.id;
+    db.query('SELECT * FROM fornecedores WHERE id_fornecedor = ' + id, function (err, achado, fields) {
+        if (err) throw err
+        else {
+            res.render('views/pages/editarFornecedor', {
+                title: 'Editar Fornecedor',
+                id_fornecedor: achado[0].id_fornecedor,
+                nome_fornecedor: achado[0].nome_fornecedor,
+                cnpj_fornecedor: achado[0].cnpj_fornecedor,
+            })
+        }
+    })
+})
+
+app.post('/editarfornecedor/:id', function (req, res) {
+    let id = req.params.id;
+    var nome_fornecedor = req.body.nome_fornecedor
+    var cnpj_fornecedor = req.body.cnpj_fornecedor
+    var form_data = {
+        nome_fornecedor: nome_fornecedor,
+        cnpj_fornecedor: cnpj_fornecedor,
+    }
+    db.query('UPDATE fornecedores SET ? WHERE id_fornecedor = ' + id, form_data, function (err, result) {
+        if (err) {
+            throw err;
+        } else {
+            res.redirect('/fornecedores');
+        }
+    })
+})
