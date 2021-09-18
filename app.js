@@ -1,4 +1,5 @@
 const express = require('express')
+const { now } = require('moment')
 const mysql = require('mysql')
 const app = express()
 const port = 3000
@@ -29,17 +30,21 @@ app.get('/', (req, res) => {
     res.render('views/pages/index')
 })
 
+// CRUD PRODUTOS
+
 app.get('/cadastrarprodutos', (req, res) => {
     res.render('views/pages/cadastrarProdutos')
 })
 
+// READ
 app.get('/produtos', function (req, res) {
     db.query('SELECT * FROM produtos', (err, achado) => {
-        if (err)  throw err
+        if (err) throw err
         else res.render('views/pages/produtos', { produtos_achados: achado });
     });
 });
 
+// CREATE
 app.post('/cadastrarprodutos', (req, res) => {
     var nome_produto = req.body.nome_produto
     var quantidade_produto = req.body.quantidade_produto
@@ -57,6 +62,7 @@ app.post('/cadastrarprodutos', (req, res) => {
     })
 });
 
+// DELETE
 app.get("/deletarproduto/(:id)", (req, res) => {
     var id = req.params.id
     db.query('DELETE FROM produtos WHERE id_produto = ' + id, (err, result) => {
@@ -64,3 +70,50 @@ app.get("/deletarproduto/(:id)", (req, res) => {
         else res.redirect('/produtos')
     })
 });
+
+// UPDATE
+app.get('/editarproduto/(:id)', function (req, res) {
+    let id = req.params.id;
+    db.query('SELECT * FROM produtos WHERE id_produto = ' + id, function (err, achado, fields) {
+        if (err) throw err
+        else {
+            res.render('views/pages/editarProduto', {
+                title: 'Editar Produto',
+                id_produto: achado[0].id_produto,
+                nome_produto: achado[0].nome_produto,
+                quantidade_produto: achado[0].quantidade_produto,
+                secao: achado[0].secao,
+                preco: achado[0].preco,
+                funcionario_produtos: achado[0].funcionario_produtos,
+                fornecedor_produtos: achado[0].fornecedor_produtos,
+            })
+        }
+    })
+})
+
+// UPDATE
+app.post('/editarproduto/:id', function (req, res) {
+    let id = req.params.id;
+    var nome_produto = req.body.nome_produto
+    var quantidade_produto = req.body.quantidade_produto
+    var secao = req.body.secao
+    var preco = req.body.preco
+    var funcionario_produtos = req.body.funcionario_produtos
+    var fornecedor_produtos = req.body.fornecedor_produtos
+    var form_data = {
+        nome_produto: nome_produto,
+        quantidade_produto: quantidade_produto,
+        secao: secao,
+        preco: preco,
+        data_insercao: new Date(),
+        funcionario_produtos: funcionario_produtos,
+        fornecedor_produtos: fornecedor_produtos,
+    }
+    db.query('UPDATE produtos SET ? WHERE id_produto = ' + id, form_data, function (err, result) {
+        if (err) {
+            throw err;
+        } else {
+            res.redirect('/produtos');
+        }
+    })
+})
