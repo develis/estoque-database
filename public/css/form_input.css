@@ -1,0 +1,47 @@
+.form_cadastro{
+    display: flex;
+    flex-direction: column;
+}
+
+.input_form{
+    background: transparent;
+    border: 0;
+    border-bottom: 0.5vh solid black;
+    padding: 1vh;
+    margin-top: 2vh;
+}
+
+::placeholder{
+    color: #fff;
+    opacity: 0.8;
+}
+
+.botao_form{
+    margin-top: 2vh;
+    width: 20%;
+    padding: 0.5vh;
+    background: transparent;
+    border: 0.3vh solid black;
+    opacity: 0.6;
+}
+
+.botao_form:hover{
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.botao_cadastro{
+    padding: 1vh;
+    border-radius: 1.5vh;
+    background: rgb(149, 255, 117);
+    text-decoration: none;
+    color: #000;
+    border: 0.5vh solid rgb(92, 180, 65);
+    opacity: 0.8;
+}
+
+.botao_cadastro:hover{
+    text-decoration: none;
+    color: #000;
+    opacity: 1;
+}

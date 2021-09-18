@@ -1,0 +1,37 @@
+.navbar-brand{
+    color: #fff;
+}
+
+.navbar-brand:hover{
+    color: #fff;
+    opacity: 0.7;
+}
+
+footer, main, .navbar {
+    background: tomato;
+    color: #fff;
+}
+
+.icons_footer {
+    font-size: 5vh;
+}
+
+.linkedin:hover, .github:hover, .email:hover {
+    opacity: 0.7;
+    transform: scale(1.2);
+}
+
+.botao_menu{
+    text-align: center;
+    color: #fff;
+    background: rgb(0, 140, 255);
+    padding: 0.8vh;
+    width: 11vw;
+    border: 1px solid rgb(0, 0, 0);
+    margin-top: 2vh;
+}
+
+.botao_menu:hover{
+    color: black;
+    text-decoration: none;
+}

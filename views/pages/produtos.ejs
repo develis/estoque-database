@@ -1,0 +1,63 @@
+<%- include('../partials/header'); %>
+
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="text-center">Produtos</h1>
+                <div class="botoes_acoes">
+                    <a href="/cadastrarprodutos" class="botao_cadastro">Cadastre um novo produto</a>
+                </div>
+                <hr>
+                <p class="text-justify">
+                <table class="tabela_produtos">
+                    <thead>
+                        <%if (produtos_achados=='' ){ %>
+                            <tr>
+                                <td colspan="7" class="alert-warning text-center">
+                                    Não há nenhuma informação a ser exibida! <br>
+                                    <a href="/cadastrarprodutos" class="botao_cadastro">Cadastre um novo produto</a>
+                                </td>
+                            </tr>
+                            <%} else { produtos_achados.forEach(function(produto){ %>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Quantidade</th>
+                                <th>Seção</th>
+                                <th>Preço</th>
+                                <th>Data da Inserção</th>
+                                <th>ID Funcionário</th>
+                                <th>ID Fornecedor</th>
+                                <th>Ações</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><%= produto.id_produto %></td>
+                            <td><%= produto.nome_produto %></td>
+                            <td><%= produto.quantidade_produto %></td>
+                            <td><%= produto.secao %></td>
+                            <td><%= produto.preco %></td>
+                            <td><%= produto.data_insercao %></td>
+                            <td><%= produto.funcionario_produtos %></td>
+                            <td><%= produto.fornecedor_produtos %></td>
+                            <td>
+                                <a href="/deletarproduto/<%=produto.id_produto%>" class="btn btn-danger">Deletar</a>
+                            </td>
+                        </tr>
+                        <% })} %>
+                    </tbody>
+                </table>
+                </p>
+            </div>
+            <div class="col-md-4 d-flex flex-column align-items-center">
+                <h1>Menu</h1>
+                <a name="" id="" class="botao_menu" href="/" role="button">Inicio</a>
+                <a name="" id="" class="botao_menu" href="#" role="button">Estoque Completo</a>
+                <a name="" id="" class="botao_menu" href="#" role="button">Estoque Simplificado</a>
+                <a name="" id="" class="botao_menu" href="#" role="button">Produtos</a>
+                <a name="" id="" class="botao_menu" href="#" role="button">Funcionarios</a>
+                <a name="" id="" class="botao_menu" href="#" role="button">Fornecedores</a>
+            </div>
+        </div>
+    </main>
+
+    <%- include('../partials/footer'); %>
