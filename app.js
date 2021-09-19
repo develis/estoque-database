@@ -282,7 +282,6 @@ app.get('/estoque', function (req, res) {
 
 
 // READ
-console.log(quantidade_produtos)
 app.get('/vendas', function (req, res) {
     db.query('SELECT * FROM vendas', (err, achado) => {
         if (err) throw err
@@ -301,7 +300,6 @@ app.post('/cadastrarvendas', (req, res) => {
     var total = req.body.total;
     var vendedor = req.body.vendedor;
     var produto_vendido = req.body.produto_vendido;
-    console.log(quantidade_vendida)
     var inserir_venda = `INSERT INTO vendas (data_venda, quantidade_vendida, total, vendedor, produto_vendido) VALUES(${data_venda}, ${quantidade_vendida}, ${total}, ${vendedor}, ${produto_vendido});`;
     var update_venda = `UPDATE produtos SET quantidade_produto = quantidade_produto - ${quantidade_vendida} WHERE id_produto = ${produto_vendido}`
     db.query(update_venda, (err, result) => {
