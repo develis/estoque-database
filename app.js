@@ -45,9 +45,11 @@ app.get('/cadastrarprodutos', (req, res) => {
     res.render('views/pages/cadastrarProdutos')
 })
 
+var quantidade_produtos = 0;
 app.post('/cadastrarprodutos', (req, res) => {
     var nome_produto = req.body.nome_produto
     var quantidade_produto = req.body.quantidade_produto
+    quantidade_produtos = quantidade_produto;
     var secao = req.body.secao
     var preco = req.body.preco
     var data_insercao = req.body.data_insercao
@@ -274,4 +276,46 @@ app.get('/estoque', function (req, res) {
     });
 });
 
+// CRUD VENDAS
 
+
+// READ
+console.log(quantidade_produtos)
+app.get('/vendas', function (req, res) {
+    db.query('SELECT * FROM vendas', (err, achado) => {
+        if (err) throw err
+        else res.render('views/pages/vendas', { vendas_achados: achado });
+    });
+});
+
+// CREATE
+app.get('/cadastrarvendas', (req, res) => {
+    res.render('views/pages/cadastrarVendas')
+})
+
+app.post('/cadastrarvendas', (req, res) => {
+    var data_venda = req.body.data_venda;
+    var quantidade_vendida = req.body.quantidade_vendida;
+    var total = req.body.total;
+    var vendedor = req.body.vendedor;
+    var produto_vendido = req.body.produto_vendido;
+    console.log(quantidade_vendida)
+    var inserir_venda = `INSERT INTO vendas (data_venda, quantidade_vendida, total, vendedor, produto_vendido) VALUES(${data_venda}, ${quantidade_vendida}, ${total}, ${vendedor}, ${produto_vendido});`;
+    var update_venda = `UPDATE produtos SET quantidade_produto = quantidade_produto - ${quantidade_vendida} WHERE id_produto = ${produto_vendido}`
+    db.query(update_venda, (err, result) => {
+        if (err) throw err
+    })
+    db.query(inserir_venda, (err, result) => {
+        if (err) throw err
+        return res.redirect('/vendas')
+    })
+});
+
+// DELETE
+app.get("/deletarvenda/(:id)", (req, res) => {
+    var id = req.params.id
+    db.query('DELETE FROM vendas WHERE id_venda = ' + id, (err, result) => {
+        if (err) throw err;
+        else res.redirect('/vendas')
+    })
+});

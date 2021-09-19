@@ -1,0 +1,77 @@
+<%- include('../partials/header'); %>
+
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 pl-4">
+                <p class="rotas">Home/<b>Vendas</b></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <h1 class="text-center h1_secoes">Vendas</h1>
+                <div class="botoes_acoes">
+                    <a href="/cadastrarvendas" class="btn btn-primary">Cadastre uma nova venda</a>
+                </div>
+                <hr>
+                <p class="text-justify">
+                <div class="table-responsive">
+                    <table class="tabela_produtos">
+                        <thead>
+                            <%if (vendas_achados=='' ){ %>
+                                <tr>
+                                    <td colspan="7" class="alert-warning text-center">
+                                        Não há nenhuma informação a ser exibida! <br>
+                                        <a href="/cadastrarvendas" class="botao_cadastro">Cadastre uma nova venda</a>
+                                    </td>
+                                </tr>
+                                <%} else { vendas_achados.forEach(function(venda){ %>
+                                    <th>ID</th>
+                                    <th>Data da Venda</th>
+                                    <th>Produto Vendido</th>
+                                    <th>Quantidade</th>
+                                    <th>Total</th>
+                                    <th>Vendedor</th>
+                                    <th>Ações</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <%= venda.id_venda %>
+                                </td>
+                                <td>
+                                    <%= venda.data_venda %>
+                                </td>
+                                <td>
+                                    <%= venda.produto_vendido %>
+                                </td>
+                                <td>
+                                    <%= venda.quantidade_vendida %>
+                                </td>
+                                <td>
+                                    <%= venda.total %>
+                                </td>
+                                <td>
+                                    <%= venda.vendedor %>
+                                </td>
+                                <td>
+                                    <a href="/deletarvenda/<%=venda.id_venda%>" class="btn btn-danger">Deletar</a>
+                                </td>
+                            </tr>
+                            <% })} %>
+                        </tbody>
+                    </table>
+                </div>
+                </p>
+            </div>
+            <div class="col-md-3 d-flex flex-column align-items-center menu_global">
+                <a name="" id="" class="botao_menu" href="/" role="button">Inicio</a>
+                <a name="" id="" class="botao_menu" href="/estoque" role="button">Estoque Completo</a>
+                <a name="" id="" class="botao_menu" href="/estoquesimplificado" role="button">Estoque Simplificado</a>
+                <a name="" id="" class="botao_menu" href="/produtos" role="button">Produtos</a>
+                <a name="" id="" class="botao_menu" href="/funcionarios" role="button">Funcionarios</a>
+                <a name="" id="" class="botao_menu" href="/fornecedores" role="button">Fornecedores</a>
+            </div>
+        </div>
+    </main>
+
+    <%- include('../partials/footer'); %>
