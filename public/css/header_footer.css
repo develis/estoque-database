@@ -29,7 +29,7 @@ footer {
     color: #fff;
     background: #DC1A1A;
     padding: 0.8vh;
-    min-width: 11vw;
+    min-width: 13vw;
     border: 1px solid rgb(0, 0, 0);
     margin-top: 2vh;
 }
@@ -41,6 +41,6 @@ footer {
 
 @media (max-width: 768px) {
     .botao_menu {
-        min-width: 35vw;
+        min-width: 53vw;
     }
 }

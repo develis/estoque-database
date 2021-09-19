@@ -254,3 +254,24 @@ app.post('/editarfornecedor/:id', function (req, res) {
         }
     })
 })
+
+// READ ESTOQUE
+
+app.get('/estoque', function (req, res) {
+    db.query(`SELECT produtos.nome_produto,
+    produtos.quantidade_produto,
+    produtos.preco,
+    funcionarios.nome_funcionario,
+    fornecedores.nome_fornecedor,
+    produtos.data_insercao
+    FROM produtos
+    INNER JOIN funcionarios
+    ON funcionario_produtos = funcionarios.id_funcionario
+    INNER JOIN fornecedores
+    ON fornecedor_produtos = id_fornecedor`, (err, achado) => {
+        if (err) throw err
+        else res.render('views/pages/estoque', { estoque_achados: achado });
+    });
+});
+
+
