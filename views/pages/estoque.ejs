@@ -32,6 +32,7 @@
                                     <th>Funcionário</th>
                                     <th>Fornecedor</th>
                                     <th>Data da Inserção</th>
+                                    <th>Quantidade Vendida</th>
                         </thead>
                         <tbody>
                             <tr>
@@ -52,6 +53,9 @@
                                 </td>
                                 <td>
                                     <%= new Date(estoque_item.data_insercao).toLocaleDateString() %>
+                                </td>
+                                <td>
+                                    <%= estoque_item.quantidade_vendida %>
                                 </td>
                             </tr>
                             <% })} %>

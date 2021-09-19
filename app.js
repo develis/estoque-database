@@ -258,19 +258,21 @@ app.post('/editarfornecedor/:id', function (req, res) {
 })
 
 // READ ESTOQUE
-
 app.get('/estoque', function (req, res) {
     db.query(`SELECT produtos.nome_produto,
     produtos.quantidade_produto,
     produtos.preco,
     funcionarios.nome_funcionario,
     fornecedores.nome_fornecedor,
-    produtos.data_insercao
+    produtos.data_insercao,
+    vendas.quantidade_vendida
     FROM produtos
     INNER JOIN funcionarios
     ON funcionario_produtos = funcionarios.id_funcionario
     INNER JOIN fornecedores
-    ON fornecedor_produtos = id_fornecedor`, (err, achado) => {
+    ON fornecedor_produtos = id_fornecedor
+    INNER JOIN vendas
+    ON produto_vendido = id_produto;`, (err, achado) => {
         if (err) throw err
         else res.render('views/pages/estoque', { estoque_achados: achado });
     });
@@ -304,10 +306,10 @@ app.post('/cadastrarvendas', (req, res) => {
     var update_venda = `UPDATE produtos SET quantidade_produto = quantidade_produto - ${quantidade_vendida} WHERE id_produto = ${produto_vendido}`
     db.query(update_venda, (err, result) => {
         if (err) throw err
+        return res.redirect('/vendas')
     })
     db.query(inserir_venda, (err, result) => {
         if (err) throw err
-        return res.redirect('/vendas')
     })
 });
 
