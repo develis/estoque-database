@@ -1,5 +1,5 @@
 .tabela_produtos td, th {
-    color: #fff;
+    /* color: #fff; */
     padding: 0.5vh;
     text-align: center;
 }
@@ -11,3 +11,5 @@ thead, tbody{
 th{
     border-top: 1px solid black;
 }
+
+

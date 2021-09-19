@@ -1,0 +1,50 @@
+.retangle_main {
+    border: 2vh solid #DC1A1A;
+    border-radius: 2vh;
+    background: #FFCC00;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .retangle_main {
+        margin-top: 5vh;
+    }
+}
+
+main {
+    margin-bottom: 10vh;
+}
+
+.rotas {
+    font-size: 3.5vh;
+}
+
+.h1_main {
+    font-size: 6vh;
+}
+
+.icons_main{
+    font-size: 20vh;
+}
+
+.link_main{
+    text-decoration: none;
+    color: black;
+}
+
+.link_main:hover{
+    text-decoration: none;
+    color: #DC1A1A;
+}
+
+.h1_secoes{
+    font-variant: small-caps;
+}
+
+.menu_global{
+    margin-top: 10vh;
+}

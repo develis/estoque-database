@@ -2,21 +2,25 @@
 
     <main class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
-                <h1 class="text-center">Cadastrar Fornecedores</h1>
+            <div class="col-md-12 pl-4">
+                <p class="rotas">Home/Fornecedores/<b>Editar Fornecedor</b></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <h1 class="text-center h1_secoes">Editar Fornecedor</h1>
                 <hr>
                 <p class="text-justify">
                 <form action="/editarfornecedor/<%= id_fornecedor %>" method="POST" class="form_cadastro">
                     <input type="text" placeholder="Nome do Fornecedor" name="nome_fornecedor" id="nome_fornecedor"
                         class="input_form" value="<%= nome_fornecedor %>">
-                    <input type="text" placeholder="CNPJ do Fornecedor" name="cnpj_fornecedor"
-                        id="cnpj_fornecedor" class="input_form" value="<%= cnpj_fornecedor %>">
+                    <input type="text" placeholder="CNPJ do Fornecedor" name="cnpj_fornecedor" id="cnpj_fornecedor"
+                        class="input_form" value="<%= cnpj_fornecedor %>">
                     <button type="submit" class="botao_form">Editar</button>
                 </form>
                 </p>
             </div>
-            <div class="col-md-4 d-flex flex-column align-items-center">
-                <h1>Menu</h1>
+            <div class="col-md-3 d-flex flex-column align-items-center menu_global">
                 <a name="" id="" class="botao_menu" href="/" role="button">Inicio</a>
                 <a name="" id="" class="botao_menu" href="/estoquecompleto" role="button">Estoque Completo</a>
                 <a name="" id="" class="botao_menu" href="/estoquesimplificado" role="button">Estoque Simplificado</a>

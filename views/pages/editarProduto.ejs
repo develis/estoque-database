@@ -2,8 +2,13 @@
 
     <main class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
-                <h1 class="text-center">Editar Produto</h1>
+            <div class="col-md-12 pl-4">
+                <p class="rotas">Home/Produtos/<b>Editar Produto</b></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <h1 class="text-center h1_secoes">Editar Produto</h1>
                 <hr>
                 <p class="text-justify">
                 <form action="/editarproduto/<%= id_produto %>" method="POST" class="form_cadastro">
@@ -11,7 +16,8 @@
                         class="input_form" value="<%= nome_produto %>">
                     <input type="number" placeholder="Quantidade do Produto" name="quantidade_produto"
                         id="quantidade_produto" class="input_form" value="<%= quantidade_produto %>">
-                    <input type="text" placeholder="Seção do Produto" name="secao" id="secao" class="input_form" value="<%= secao %>">
+                    <input type="text" placeholder="Seção do Produto" name="secao" id="secao" class="input_form"
+                        value="<%= secao %>">
                     <input type="number" step="0.01" placeholder="Preço do Produto" name="preco" id="preco"
                         class="input_form" value="<%= preco %>">
                     <input type="number" placeholder="ID do Funcionário" name="funcionario_produtos"
@@ -23,8 +29,7 @@
                 </form>
                 </p>
             </div>
-            <div class="col-md-4 d-flex flex-column align-items-center">
-                <h1>Menu</h1>
+            <div class="col-md-3 d-flex flex-column align-items-center menu_global">
                 <a name="" id="" class="botao_menu" href="/" role="button">Inicio</a>
                 <a name="" id="" class="botao_menu" href="/estoquecompleto" role="button">Estoque Completo</a>
                 <a name="" id="" class="botao_menu" href="/estoquesimplificado" role="button">Estoque Simplificado</a>
