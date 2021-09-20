@@ -1,7 +1,7 @@
-# Banco de dados para controle de estoque de um supermercado.
-## 🚀 Instalando os packages necessários:
+## Database made for inventory control at a supermarket.
+## 🚀 Installing the necessary packages:
 
-  Utilizando o NPM:
+  Using Node Package Manager (NPM):
   
 ```
 npm init
@@ -9,14 +9,14 @@ npm i ejs express mysql
 ```
 
 
-## 🛠 Tecnologias Utilizadas:
+## 🛠 Technologies Used:
 ✔️ NodeJS <br>
 ✔️ Express <br>
 ✔️ MySQL <br>
 ✔️ EJS <br>
 ✔️ Bootstrap
 
-## 📃 Modelagem das tabelas:
+## 📃 Table models:
 <ul>
   <h3>📍 Funcionários </h3>
   <li>id_funcionario INT NOT NULL AUTO_INCREMENT,</li>
